@@ -9,6 +9,9 @@ def vel(t):
 def pos(t):
     return x0 + v0 * t + 1/2 * a * t**2
 
+def accel(t):
+    return a
+
 def plotter():
   xcoord_position = []
   for x in range(0,10):
@@ -24,11 +27,20 @@ def plotter():
   for x in range(0, 10):
       ycoord_velocity.append(vel(x))
 
+  xcoord_accel = []
+  for x in range(0,10):
+      xcoord_accel.append(x)
+  ycoord_accel = []
+  for x in range(0, 10):
+      ycoord_accel.append(accel(x))
+      
   plt.style.use("dark_background")
   plt.ylabel('Position / Velocity')
   plt.xlabel('Time')
   plt.plot(xcoord_position,ycoord_position, label="Position")
   plt.plot(xcoord_velocity,ycoord_velocity, label="Velocity")
+  plt.plot(xcoord_accel,ycoord_accel, label="Acceleration")
+
   plt.legend()
   plt.show()
 
