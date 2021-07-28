@@ -12,40 +12,29 @@ def accel(t):
 
 def plotter():
   plt.clf()
-  xcoord_position = []
-  for x in range(0, 25):
-      xcoord_position.append(x)
-  ycoord_position = []
-  for x in range(0, 25):
-      ycoord_position.append(pos(x))
+  xcoord = []
+  ycoord_position, ycoord_velocity, ycoord_accel = [], [], []
 
-  xcoord_velocity = []
-  for x in range(0, 25):
-      xcoord_velocity.append(x)
-  ycoord_velocity = []
-  for x in range(0, 25):
-      ycoord_velocity.append(vel(x))
+  for x in range(0, 30):
+    xcoord.append(x)
+    ycoord_position.append(pos(x))
+    ycoord_velocity.append(vel(x))
+    ycoord_accel.append(accel(x))
 
-  xcoord_accel = []
-  for x in range(0,25):
-      xcoord_accel.append(x)
-  ycoord_accel = []
-  for x in range(0, 25):
-      ycoord_accel.append(accel(x))
-      
   plt.style.use("fivethirtyeight")
   plt.ylabel('Position / Velocity')
-  plt.xlabel('Time')
-  plt.plot(xcoord_position, ycoord_position, label="Position")
-  plt.plot(xcoord_velocity, ycoord_velocity, label="Velocity")
-  plt.plot(xcoord_accel, ycoord_accel, label="Acceleration")
+  plt.xlabel('Time (seconds)')
+  plt.plot(xcoord, ycoord_position, label="Position")
+  plt.plot(xcoord, ycoord_velocity, label="Velocity")
+  plt.plot(xcoord, ycoord_accel, label="Acceleration")
 
   plt.legend()
 
   # plt.yscale('log') # Uncheck for log scale
+  plt.tight_layout()
   plt.show(block=False)
 
-def get_data():
+def get_time_data():
   user = input("Enter a time (q to quit): ")
   while user != 'q':
     try:
@@ -58,14 +47,14 @@ def get_data():
     user = input("Enter a time (q to quit): ")
 
 user = ""
-
 while user.lower() != 'n':
     try:
       x0 = float(input("Enter the initial position: "))
       v0 = float(input("Enter the initial velocity: "))
       a =  float(input("Enter the acceleration: "))
       plotter()
-      get_data()
+      get_time_data()
     except ValueError:
       print("Not a valid value")
     user = input("Would you like to enter another set (y/n)? ")
+
