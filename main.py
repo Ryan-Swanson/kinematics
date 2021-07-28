@@ -15,14 +15,14 @@ def plotter():
   xcoord = []
   ycoord_position, ycoord_velocity, ycoord_accel = [], [], []
 
-  for x in range(0, 30):
-    xcoord.append(x)
-    ycoord_position.append(pos(x))
-    ycoord_velocity.append(vel(x))
-    ycoord_accel.append(accel(x))
+  for t in range(0, 30):
+    xcoord.append(t)
+    ycoord_position.append(pos(t))
+    ycoord_velocity.append(vel(t))
+    ycoord_accel.append(accel(t))
 
   plt.style.use("fivethirtyeight")
-  plt.ylabel('Position / Velocity')
+  plt.ylabel('Position | Velocity')
   plt.xlabel('Time (seconds)')
   plt.plot(xcoord, ycoord_position, label="Position")
   plt.plot(xcoord, ycoord_velocity, label="Velocity")
@@ -35,26 +35,27 @@ def plotter():
   plt.show(block=False)
 
 def get_time_data():
-  user = input("Enter a time (q to quit): ")
-  while user != 'q':
+  t = input("Enter a time (q to quit): ")
+  while t != 'q':
     try:
-        t = float(user)
+        t = float(t)
         print("The position is "+ str(pos(t)) )
         print("The velocity is "+ str(vel(t)) )
         plt.plot(t)
     except ValueError: 
         print("That's not a time or q.")
-    user = input("Enter a time (q to quit): ")
+    t = input("Enter a time (q to quit): ")
 
-user = ""
-while user.lower() != 'n':
-    try:
-      x0 = float(input("Enter the initial position: "))
-      v0 = float(input("Enter the initial velocity: "))
-      a =  float(input("Enter the acceleration: "))
-      plotter()
-      get_time_data()
-    except ValueError:
-      print("Not a valid value")
-    user = input("Would you like to enter another set (y/n)? ")
+if __name__ == "__main__":
+  user = ""
+  while user.lower() != 'n':
+      try:
+        x0 = float(input("Enter the initial position: "))
+        v0 = float(input("Enter the initial velocity: "))
+        a =  float(input("Enter the acceleration: "))
+        plotter()
+        get_time_data()
+      except ValueError:
+        print("Not a valid value")
+      user = input("Would you like to enter another set (y/n)? ")
 
