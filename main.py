@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 
 
-def pos(t):
+def position(t):
     return x0 + v0 * t + 1/2 * a * t**2
 
-def vel(t):
+def velocity(t):
     return v0 + a * t
 
-def accel(t):
+def acceleration(t):
     return a
 
 def plotter():
@@ -17,9 +17,9 @@ def plotter():
 
   for t in range(0, 30):
     xcoord.append(t)
-    ycoord_position.append(pos(t))
-    ycoord_velocity.append(vel(t))
-    ycoord_accel.append(accel(t))
+    ycoord_position.append(position(t))
+    ycoord_velocity.append(velocity(t))
+    ycoord_accel.append(acceleration(t))
 
   plt.style.use("fivethirtyeight")
   plt.ylabel('Position | Velocity')
@@ -31,6 +31,7 @@ def plotter():
   plt.legend()
 
   # plt.yscale('log') # Uncheck for log scale
+  
   plt.tight_layout()
   plt.show(block=False)
 
@@ -39,8 +40,8 @@ def get_time_data():
   while t != 'q':
     try:
         t = float(t)
-        print("The position is "+ str(pos(t)) )
-        print("The velocity is "+ str(vel(t)) )
+        print("The position is "+ str(position(t)) )
+        print("The velocity is "+ str(velocity(t)) )
         plt.plot(t)
     except ValueError: 
         print("That's not a time or q.")
